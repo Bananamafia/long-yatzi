@@ -104,7 +104,7 @@ namespace LongYatzi
             }
             return 0;
         }
-        internal int ValidateTwoPairs()
+        internal int ValidateTwoPairs() // Error with Full House
         {
             if (ValidateFourSame() > 0) return ValidateFourSame();//if there is 4 of the highest non checked number, there is 2 pairs of it which is same as four same
             for(int _eyecount = ValidatePair() / 2-1; _eyecount>0;_eyecount--)
