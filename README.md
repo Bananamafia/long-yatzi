@@ -1,17 +1,18 @@
 # long-yatzi
-Game similar, but different to Yahtzee. Goal of this project is to adapt the game for Android. At the moment the game ui is only windows forms based.
+Game similar, but different to Yahtzee. Goal of this project is to adapt the game for Android. At the moment the game ui is only windows forms based.\
+The game can now be played and had some fun with, if you like this sort of thing.
 
 Features working:\
 -Dice throwing\
 -Holding/locking dice between throws\
--Upper section of the score board
+-score keeping. High scores aren't saved anywhere, so pen and paper is still needed if you want to remember your high scores!\
+-Single player mechanics
 
 Work in progress:\
--Single player mechanics\
--score keeping\
 -windows forms based UI
 
 Todo:\
+-write coherent instructions\
 -local high score table\
 -android implementation\
 -local multiplayer\

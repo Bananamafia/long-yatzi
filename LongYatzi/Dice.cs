@@ -79,42 +79,24 @@ namespace LongYatzi
             return false;
         }
         #region Dice Validators
-        internal int Validate(int _eyecount) //validate category from upper section
+        internal int Validate(int _eyecount) //validate category from upper section.
         {
-            int score = -3;
-            foreach (Die die in _diceList)
-            {
-                if (die.EyeCount == _eyecount)
-                {
-                    score++;
-                }
-            }
-            return score * _eyecount;
+            return ((-3 + Count(_eyecount)) * _eyecount); //if you get 3 same, you get 0 points. Less if you have less and more if you have more...
         }
         internal int ValidatePair()
         {
             for (int _eyecount = 6; _eyecount > 0; _eyecount--)
             {
-                int score = 0;
-                foreach (Die die in _diceList)
-                {
-                    if (die.EyeCount == _eyecount) score += _eyecount;
-                }
-                if (score > _eyecount) return _eyecount * 2;
+                if (Count(_eyecount)>=2) return _eyecount*2;
             }
             return 0;
         }
         internal int ValidateTwoPairs() // Error with Full House
         {
             if (ValidateFourSame() > 0) return ValidateFourSame();//if there is 4 of the highest non checked number, there is 2 pairs of it which is same as four same
-            for(int _eyecount = ValidatePair() / 2-1; _eyecount>0;_eyecount--)
+            for(int _eyecount = ValidatePair() / 2-1; _eyecount>0;_eyecount--)//start searching for smaller pair, _eyecount skips already found pair and bigger numbers
             {
-                int score = ValidatePair();
-                foreach (Die die in _diceList)
-                {
-                    if (die.EyeCount == _eyecount) score += _eyecount;
-                }
-                if (score - ValidatePair() == _eyecount*2) return score;
+                if (Count(_eyecount) >= 2) return ValidatePair()+_eyecount*2;
             }
             return 0;
         }
@@ -122,86 +104,48 @@ namespace LongYatzi
         {
             for (int _eyecount = 6; _eyecount > 0; _eyecount--)
             {
-                int _score = 0;
-                foreach (Die die in _diceList)
-                {
-                    if (die.EyeCount == _eyecount)
-                    {
-                        _score += die.EyeCount;
-                        if (_score == _eyecount * 3) return _score;
-                    }
-                }
+                if (Count(_eyecount) >= 3) return _eyecount * 3;
             }
             return 0;
         }
+
         internal int ValidateFourSame()
         {
-            for(int _eyecount = 6;_eyecount>0;_eyecount--)
+            for (int _eyecount = 6; _eyecount > 0; _eyecount--)
             {
-                int _score = 0;
-                foreach(Die die in _diceList)
-                {
-                    if (die.EyeCount == _eyecount)
-                    {
-                        _score += die.EyeCount;
-                        if (_score == _eyecount * 4) return _score;
-                    }
-                }
+                if (Count(_eyecount) >= 4) return _eyecount * 4;
             }
             return 0;
         }
         internal int ValidateSmallStraight()
         {
-            for (int i = 1; i < 6; i++)
-            {
-                if (!HandContains(i))
-                {
-                    return 0;
-                }
-            }
-            return 15;
+            if (!HandContains(6) && ValidatePair() == 0) return 15;
+            return 0;
         }
         internal int ValidateBigStraight()
         {
-            for (int i = 2; i < 7; i++)
-            {
-                if (!HandContains(i))
-                {
-                    return 0;
-                }
-            }
-            return 20;
+            if (!HandContains(1) && ValidatePair()==0) return 20;
+            return 0;
         }
         internal int ValidateFullHouse()
         {
-            if (ValidateYatzy() > 0) return _diceList[0].EyeCount * 5;
-            if(ValidateThreeSame() > 0) //threesame found, trying to find a pair
-            {
-                int score = ValidateThreeSame();
-                for (int _eyecount = score/3-1; _eyecount > 0; _eyecount--)
-                {
-                    foreach (Die die in _diceList)
-                    {
-                        if (die.EyeCount == _eyecount) score += _eyecount;
-                    }
-                    if (score-ValidateThreeSame() == _eyecount*2) return score;
-                }
-            }
+            if (ValidateThreeSame()>0 && ValidateTwoPairs() > 0 && (ValidateFourSame() ==0 || ValidateYatzy() > 0)) return Sum();//if the hand is both three same, and two pairs, it must be full house, so return sum of all the dice (if it's not four sames but is yatzy)
             return 0;
         }
-        internal int ValidateRandom()
+        internal int Sum()
         {
-            return _diceList[0].EyeCount + _diceList[1].EyeCount + _diceList[2].EyeCount + _diceList[3].EyeCount + _diceList[4].EyeCount;
+            return _diceList.Sum(die => die.EyeCount);
         }
         internal int ValidateYatzy()
         {
-            if (_diceList[0].EyeCount == _diceList[1].EyeCount && _diceList[0].EyeCount == _diceList[2].EyeCount && _diceList[0].EyeCount == _diceList[3].EyeCount && _diceList[0].EyeCount == _diceList[4].EyeCount)
-            {
-                return 50;
-            }
+
+            if (Count(_diceList[0].EyeCount) == 5) return 50;
             return 0;
         }
-
+        internal int Count(int _eyecount)
+        {
+            return _diceList.Count(die => die.EyeCount == _eyecount);
+        }
         #endregion
 
     }

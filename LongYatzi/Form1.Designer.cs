@@ -133,7 +133,11 @@ namespace LongYatzi
             this.bonus2 = new System.Windows.Forms.Label();
             this.bonus3 = new System.Windows.Forms.Label();
             this.bonus4 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.total1 = new System.Windows.Forms.Label();
+            this.total2 = new System.Windows.Forms.Label();
+            this.total3 = new System.Windows.Forms.Label();
+            this.total4 = new System.Windows.Forms.Label();
+            this.totaltotal = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // throw1
@@ -1065,21 +1069,61 @@ namespace LongYatzi
             this.bonus4.TabIndex = 102;
             this.bonus4.Text = "bonus1";
             // 
-            // label1
+            // total1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(119, 612);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(27, 13);
-            this.label1.TabIndex = 103;
-            this.label1.Text = "total";
+            this.total1.AutoSize = true;
+            this.total1.Location = new System.Drawing.Point(119, 612);
+            this.total1.Name = "total1";
+            this.total1.Size = new System.Drawing.Size(27, 13);
+            this.total1.TabIndex = 103;
+            this.total1.Text = "total";
+            // 
+            // total2
+            // 
+            this.total2.AutoSize = true;
+            this.total2.Location = new System.Drawing.Point(172, 615);
+            this.total2.Name = "total2";
+            this.total2.Size = new System.Drawing.Size(27, 13);
+            this.total2.TabIndex = 104;
+            this.total2.Text = "total";
+            // 
+            // total3
+            // 
+            this.total3.AutoSize = true;
+            this.total3.Location = new System.Drawing.Point(220, 615);
+            this.total3.Name = "total3";
+            this.total3.Size = new System.Drawing.Size(27, 13);
+            this.total3.TabIndex = 105;
+            this.total3.Text = "total";
+            // 
+            // total4
+            // 
+            this.total4.AutoSize = true;
+            this.total4.Location = new System.Drawing.Point(288, 615);
+            this.total4.Name = "total4";
+            this.total4.Size = new System.Drawing.Size(27, 13);
+            this.total4.TabIndex = 106;
+            this.total4.Text = "total";
+            // 
+            // totaltotal
+            // 
+            this.totaltotal.AutoSize = true;
+            this.totaltotal.Location = new System.Drawing.Point(337, 615);
+            this.totaltotal.Name = "totaltotal";
+            this.totaltotal.Size = new System.Drawing.Size(35, 13);
+            this.totaltotal.TabIndex = 107;
+            this.totaltotal.Text = "label1";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(395, 657);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.totaltotal);
+            this.Controls.Add(this.total4);
+            this.Controls.Add(this.total3);
+            this.Controls.Add(this.total2);
+            this.Controls.Add(this.total1);
             this.Controls.Add(this.bonus4);
             this.Controls.Add(this.bonus3);
             this.Controls.Add(this.bonus2);
@@ -1306,7 +1350,11 @@ namespace LongYatzi
         private System.Windows.Forms.Label bonus2;
         private System.Windows.Forms.Label bonus3;
         private System.Windows.Forms.Label bonus4;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label total1;
+        private System.Windows.Forms.Label total2;
+        private System.Windows.Forms.Label total3;
+        private System.Windows.Forms.Label total4;
+        private System.Windows.Forms.Label totaltotal;
     }
 }
 
